@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class weather_build extends StatelessWidget {
+class WeatherListBuild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

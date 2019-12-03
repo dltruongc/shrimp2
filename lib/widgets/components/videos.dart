@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class VideoComponent extends StatelessWidget {
+class VideoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(

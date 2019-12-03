@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 3,
-            child: VideoComponent(),
+            child: VideoWidget(),
           ),
           Expanded(
             flex: 2,
