@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:shrimp_2/widgets/components/weather_title_build.dart';
-import 'package:shrimp_2/widgets/components/weather_build.dart';
 import 'package:weather/weather.dart';
+import 'package:flutter/material.dart';
+
+import '../widgets/weather/weather_title_build.dart';
+import '../widgets/weather/weather_build.dart';
 
 class WeatherWidget extends StatelessWidget {
   final Weather weather;
@@ -36,7 +37,7 @@ class WeatherWidget extends StatelessWidget {
                 flex: 3,
                 child: Container(
                   decoration: BoxDecoration(color: Colors.black26),
-                  child: weather_build(),
+                  child: WeatherListBuild(),
                 ),
               ),
             ],

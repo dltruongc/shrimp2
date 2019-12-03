@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:shrimp_2/Providers/Weather.dart';
-import 'package:shrimp_2/widgets/weather.dart';
-import 'package:weather/weather.dart';
-
 import 'components/grid_item.dart';
 
 class MainTitleList extends StatelessWidget {

@@ -11,17 +11,5 @@ class MyAppBar {
             color: Colors.white,
           ),
         ),
-        // gradient: LinearGradient(
-        //   colors: [
-        //     Color(0xFF012A33),
-        //     Color(0xff22B1A9),
-        //   ],
-        //   stops: [
-        //     0.1,
-        //     0.85,
-        //   ],
-        //   begin: Alignment.bottomLeft,
-        //   end: Alignment.topRight,
-        // ),
       );
 }

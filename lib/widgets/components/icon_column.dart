@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IconColumn extends StatefulWidget {
   @override
@@ -18,7 +17,6 @@ class _IconColumnState extends State<IconColumn> {
           child: Image.asset(
             'lib/assets/shrimp_ico.png',
             color: Color(0xEEEC3B6B),
-//            colorBlendMode: BlendMode.screen,
             fit: BoxFit.cover,
           ),
         ),
