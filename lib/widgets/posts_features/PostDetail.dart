@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class PostDetail extends StatelessWidget {
-  const PostDetail({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

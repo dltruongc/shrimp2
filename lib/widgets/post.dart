@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:shrimp_2/blocs/login_bloc.dart';
 import 'components/alert_dialog.dart';
 import 'login.dart';
 import 'posts_features/PostDetail.dart';
@@ -16,26 +17,23 @@ class _PostPageState extends State<PostPage> {
   int _limit = 20;
 
   _loginCheck(BuildContext context) {
-    Provider.of(context).loginAccount['userName'] == null
-                    //TODO
-                    ? MyAlertDialog.show(
-                        context: context,
-                        title: 'Bạn chưa đăng nhập',
-                        content: 'Vui lòng đăng nhập để sử dụng tính năng này.',
-                        actions: [
-                          FlatButton(
-                            child: Text('Đăng nhập'),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
-                            },
-                          ),
-                        ],
-                      )
-                    : Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => NewPostPage()));
+    Provider.of<LoginBloc>(context).loginUser == null
+        ? MyAlertDialog.show(
+            context: context,
+            title: 'Bạn chưa đăng nhập',
+            content: 'Vui lòng đăng nhập để sử dụng tính năng này.',
+            actions: [
+              FlatButton(
+                child: Text('Đăng nhập'),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+              ),
+            ],
+          )
+        : Navigator.push(
+            context, MaterialPageRoute(builder: (context) => NewPostPage()));
   }
 
   @override
@@ -43,7 +41,6 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       appBar: GradientAppBar(
         centerTitle: true,
-        
         leading: Icon(Icons.search, color: Colors.white),
         title: TextFormField(
           decoration: InputDecoration(
@@ -98,7 +95,12 @@ class _PostPageState extends State<PostPage> {
       'title': 'Tiêu đề bài đăng',
       'views': 3210,
       'favorites': 99,
-      'content':
+      'content': 'Nội dung của bài đăng được hiển thị'
+          'Nội dung của bài đăng được hiển thị'
+          'Nội dung của bài đăng được hiển thị'
+          'Nội dung của bài đăng được hiển thị'
+          'Nội dung của bài đăng được hiển thị'
+          'Nội dung của bài đăng được hiển thị'
           'Nội dung của bài đăng được hiển thị'
           'Nội dung của bài đăng được hiển thị'
           'Nội dung của bài đăng được hiển thị'
@@ -176,23 +178,23 @@ class _PostPageState extends State<PostPage> {
         SizedBox(
           height: 2,
         ),
-        Row(
-          children: <Widget>[
-            Icon(Icons.people, color: Color(0xff444444)),
-            Text(
-              item['views'].toString(),
-              style: TextStyle(fontSize: 16, color: Color(0xff888888)),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Icon(Icons.favorite, color: Color(0xffFF0000)),
-            Text(
-              item['favorites'].toString(),
-              style: TextStyle(fontSize: 16, color: Color(0xff888888)),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: <Widget>[
+        //     Icon(Icons.people, color: Color(0xff444444)),
+        //     Text(
+        //       item['views'].toString(),
+        //       style: TextStyle(fontSize: 16, color: Color(0xff888888)),
+        //     ),
+        //     SizedBox(
+        //       width: 20,
+        //     ),
+        //     Icon(Icons.favorite, color: Color(0xffFF0000)),
+        //     Text(
+        //       item['favorites'].toString(),
+        //       style: TextStyle(fontSize: 16, color: Color(0xff888888)),
+        //     ),
+        //   ],
+        // ),
         SizedBox(
           height: 3,
         )

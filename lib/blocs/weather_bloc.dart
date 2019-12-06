@@ -33,8 +33,10 @@ class WeatherBloc extends BaseBloc with ChangeNotifier {
       notifyListeners();
     }
     else if (event.content == weatherType.fiveDaysForecast) {
+      _weatherData.removeRange(0, _weatherData.length);
+      List<Weather> x = await WeatherStation(SecretKeys.weather).fiveDayForecast();
       _weatherData
-          .addAll(await WeatherStation(SecretKeys.weather).fiveDayForecast());
+          .addAll(x);
       print('i got multiple\n>>>>>>>>>>>>> STOP MULTI INVOKES');
       _type = weatherType.fiveDaysForecast;
       notifyListeners();

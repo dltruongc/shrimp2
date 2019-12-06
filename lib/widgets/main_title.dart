@@ -13,35 +13,47 @@ class MainTitleList extends StatefulWidget {
   _MainTitleListState createState() => _MainTitleListState();
 }
 
-const List<Map> gridItems = [
-  {
-    'title': 'Thời tiết',
-    'centerIcon': FontAwesomeIcons.cloudSun,
-    'color': Colors.white,
-    'centerTitle': '\u2070C',
-    // 'push': WeatherWidget,
-  },
-  {
-    'title': 'Môi trường',
-    'centerIcon': FontAwesomeIcons.leaf,
-    'color': Colors.white,
-//      'push': Question(),
-  },
-  {
-    'title': 'Giá cả',
-    'centerIcon': FontAwesomeIcons.question,
-    'color': Colors.white,
-  },
-  {
-    'title': 'Tin tức',
-    'centerIcon': FontAwesomeIcons.newspaper,
-    'color': Colors.white,
-  },
-];
-
 class _MainTitleListState extends State<MainTitleList> {
+  static const List<Map> gridItems = [
+    {
+      'title': 'Thời tiết',
+      'centerIcon': FontAwesomeIcons.cloudSun,
+      'color': Colors.white,
+    },
+    {
+      'title': 'Môi trường',
+      'centerIcon': FontAwesomeIcons.leaf,
+      'color': Colors.white,
+//      'push': Question(),
+    },
+    {
+      'title': 'Giá cả',
+      'centerIcon': FontAwesomeIcons.coins,
+      'color': Colors.white,
+    },
+    {
+      'title': 'Tin tức',
+      'centerIcon': FontAwesomeIcons.newspaper,
+      'color': Colors.white,
+    },
+  ];
+  weatherType type;
+  List<Weather> weatherData;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    WeatherBloc bloc = Provider.of<WeatherBloc>(context, listen: false);
+    if (bloc.weatherData['data'].isEmpty)
+      bloc.event.add(WeatherEvent(weatherType.fiveDaysForecast));
+    super.didChangeDependencies();
+     type = bloc.weatherData['type'];
+     weatherData = bloc.weatherData['data'];
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return GridView(
       physics: new NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.fromLTRB(36, 0, 36, 0),
@@ -52,37 +64,22 @@ class _MainTitleListState extends State<MainTitleList> {
         childAspectRatio: 1.0,
       ),
       children: <Widget>[
-        Consumer<WeatherBloc>(
-          builder: (context, bloc, child) {
-            weatherType type = bloc.weatherData['data'].isEmpty
-                ? null
-                : bloc.weatherData['type'];
-            List<Weather> weatherData = bloc.weatherData['data'].isEmpty
-                ? null
-                : bloc.weatherData['data'];
-            if (bloc.weatherData['data'].isEmpty)
-              bloc.event.add(WeatherEvent(weatherType.fiveDaysForecast));
-
-            return MyGridItem(
-              title: gridItems[0]['title'],
-              icon: gridItems[0]['centerIcon'],
-              color: gridItems[0]['color'],
-              centerTitle: type != null
-                  ? type != weatherType.currentWeather
-                      ? weatherData.first.temperature.celsius
-                              .toStringAsFixed(0) +
-                          '\u2070C'
-                      : weatherData.first.temperature.celsius
-                              .toStringAsFixed(0) +
-                          '\u2070C'
-                  : null,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => WeatherWidget(),
-                  ),
-                );
-              },
+        MyGridItem(
+          title: gridItems[0]['title'],
+          icon: gridItems[0]['centerIcon'],
+          color: gridItems[0]['color'],
+          centerTitle: type != null
+              ? type != weatherType.currentWeather
+                  ? weatherData.first.temperature.celsius.toStringAsFixed(0) +
+                      '\u2070C'
+                  : weatherData.first.temperature.celsius.toStringAsFixed(0) +
+                      '\u2070C'
+              : null,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => WeatherWidget(),
+              ),
             );
           },
         ),

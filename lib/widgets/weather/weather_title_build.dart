@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shrimp_2/blocs/weather_bloc.dart';
-import 'package:shrimp_2/events/weather_event.dart';
 import 'package:weather/weather.dart';
 
 class WeatherTitleBuild extends StatefulWidget {
@@ -19,7 +18,7 @@ class _WeatherTitleBuildState extends State<WeatherTitleBuild> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
-              weather.country,
+              weather.areaName,
               style: TextStyle(
                 fontSize: 28,
               ),

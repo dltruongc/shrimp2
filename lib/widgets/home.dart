@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shrimp_2/widgets/components/icon_column.dart';
-import 'package:shrimp_2/widgets/components/my_appbar.dart';
 import 'package:shrimp_2/widgets/components/videos.dart';
 import 'package:shrimp_2/widgets/main_title.dart';
 
