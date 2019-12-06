@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shrimp_2/blocs/weather_bloc.dart';
+import '../../blocs/weather_bloc.dart';
 import 'package:weather/weather.dart';
 
 List _weekDay = [

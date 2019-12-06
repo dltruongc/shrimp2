@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shrimp_2/blocs/weather_bloc.dart';
-import 'package:shrimp_2/events/weather_event.dart';
+import '../blocs/weather_bloc.dart';
+import '../events/weather_event.dart';
 import '../widgets/weather/weather_list_build.dart';
 import '../widgets/weather/weather_title_build.dart';
 
@@ -14,9 +14,9 @@ class WeatherWidget extends StatelessWidget {
         icon: Icon(Icons.refresh),
         label: Text('Tải lại'),
         onPressed: () {
-          Provider.of<WeatherBloc>(context)
-              .event
-              .add(WeatherEvent(weatherType.fiveDaysForecast));
+          // Provider.of<WeatherBloc>(context)
+          //     .event
+          //     .add(WeatherEvent(weatherType.fiveDaysForecast));
         },
       ),
       body: SafeArea(

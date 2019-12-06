@@ -7,34 +7,26 @@ import 'blocs/login_bloc.dart';
 
 void main() {
   runApp(
-    MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xFF00A3B3),
-        primaryTextTheme: TextTheme(
-          body1: TextStyle(color: Colors.black),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<WeatherBloc>(
+          create: (_) => WeatherBloc(),
         ),
-        primaryIconTheme: IconThemeData(color: Color(0xFF012A33)),
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<WeatherBloc>.value(
-            value: WeatherBloc(),
+        ChangeNotifierProvider<LoginBloc>(
+          create: (_) => LoginBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Color(0xFF00A3B3),
+          primaryTextTheme: TextTheme(
+            body1: TextStyle(color: Colors.black),
           ),
-          ChangeNotifierProvider<LoginBloc>.value(
-            value: LoginBloc(),
-          ),
-        ],
-        child: MyApp(),
+          primaryIconTheme: IconThemeData(color: Color(0xFF012A33)),
+        ),
+        home: HomePage(),
       ),
     ),
   );
 }
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: HomePage(),
-    );
-  }
-}
+// FER

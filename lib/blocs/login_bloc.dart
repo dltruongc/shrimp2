@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:shrimp_2/events/login_event.dart';
-import 'package:shrimp_2/providers/database_provider.dart';
-import 'package:shrimp_2/validations/account_validation.dart';
+import '../events/login_event.dart';
+import '../providers/database_provider.dart';
+import '../validations/account_validation.dart';
 
 import '../bases/base_bloc.dart';
 import '../bases/base_event.dart';

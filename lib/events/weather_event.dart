@@ -1,4 +1,4 @@
-import 'package:shrimp_2/bases/base_event.dart';
+import '../bases/base_event.dart';
 
 enum weatherType {
   currentWeather,

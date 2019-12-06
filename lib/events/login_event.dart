@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:shrimp_2/bases/base_event.dart';
+import '../bases/base_event.dart';
 
 class LoginEvent extends BaseEvent {
   final String _userName;

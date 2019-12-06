@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:shrimp_2/blocs/login_bloc.dart';
+import '../blocs/login_bloc.dart';
 import 'components/alert_dialog.dart';
 import 'login.dart';
 import 'posts_features/PostDetail.dart';

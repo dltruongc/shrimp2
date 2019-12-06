@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:mongo_dart/mongo_dart.dart' hide State;
-import 'package:shrimp_2/blocs/login_bloc.dart';
+import '../blocs/login_bloc.dart';
 
 class SignUpForm extends StatefulWidget {
   @override

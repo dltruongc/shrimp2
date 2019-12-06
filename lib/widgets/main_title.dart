@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:shrimp_2/blocs/weather_bloc.dart';
-import 'package:shrimp_2/events/weather_event.dart';
+import '../blocs/weather_bloc.dart';
+import '../events/weather_event.dart';
 import 'package:weather/weather.dart';
 
 import '../widgets/weather.dart';
@@ -15,23 +15,23 @@ class MainTitleList extends StatefulWidget {
 
 class _MainTitleListState extends State<MainTitleList> {
   static const List<Map> gridItems = [
-    {
+    const {
       'title': 'Thời tiết',
       'centerIcon': FontAwesomeIcons.cloudSun,
       'color': Colors.white,
     },
-    {
+    const {
       'title': 'Môi trường',
       'centerIcon': FontAwesomeIcons.leaf,
       'color': Colors.white,
 //      'push': Question(),
     },
-    {
+    const {
       'title': 'Giá cả',
       'centerIcon': FontAwesomeIcons.coins,
       'color': Colors.white,
     },
-    {
+    const {
       'title': 'Tin tức',
       'centerIcon': FontAwesomeIcons.newspaper,
       'color': Colors.white,
@@ -41,13 +41,12 @@ class _MainTitleListState extends State<MainTitleList> {
   List<Weather> weatherData;
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    WeatherBloc bloc = Provider.of<WeatherBloc>(context, listen: false);
-    if (bloc.weatherData['data'].isEmpty)
-      bloc.event.add(WeatherEvent(weatherType.fiveDaysForecast));
+    // WeatherBloc bloc = Provider.of<WeatherBloc>(context, listen: false);
+    // if (bloc.weatherData['data'].isEmpty)
+    //   // bloc.event.add(WeatherEvent(weatherType.fiveDaysForecast));
     super.didChangeDependencies();
-     type = bloc.weatherData['type'];
-     weatherData = bloc.weatherData['data'];
+    //  type = bloc.weatherData['type'];
+    //  weatherData = bloc.weatherData['data'];
 
   }
 

@@ -8,13 +8,15 @@ class WeatherProvider with ChangeNotifier {
   List<Weather> _weathers;
 
   Future<Weather> getWeather () async {
-    _weather =  await WeatherStation(SecretKeys.weather).currentWeather();
+    // _weather =  await WeatherStation(SecretKeys.weather).currentWeather();
+    print('call me');
     notifyListeners();
     return _weather;
   }
 
   Future<List<Weather>> getWeatherFiveDays () async {
-    _weathers =  await WeatherStation(SecretKeys.weather).fiveDayForecast();
+    // _weathers =  await WeatherStation(SecretKeys.weather).fiveDayForecast();
+    print('call me');
     notifyListeners();
     return _weathers;
   }

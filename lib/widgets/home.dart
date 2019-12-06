@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shrimp_2/widgets/components/icon_column.dart';
-import 'package:shrimp_2/widgets/components/videos.dart';
-import 'package:shrimp_2/widgets/main_title.dart';
+import '../widgets/components/icon_column.dart';
+import '../widgets/components/videos.dart';
+import '../widgets/main_title.dart';
 
 class HomePage extends StatefulWidget {
   @override

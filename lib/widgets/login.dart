@@ -2,11 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:shrimp_2/blocs/login_bloc.dart';
-import 'package:shrimp_2/events/login_event.dart';
-import 'package:shrimp_2/models/user_model.dart';
-import 'package:shrimp_2/widgets/register.dart';
-import 'package:shrimp_2/widgets/settings.dart';
+import '../blocs/login_bloc.dart';
+import '../events/login_event.dart';
+import '../models/user_model.dart';
+import '../widgets/register.dart';
+import '../widgets/settings.dart';
 
 class LoginPage extends StatelessWidget {
   bool fromSetting = false;
