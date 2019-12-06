@@ -4,12 +4,14 @@ class MyGridItem extends StatelessWidget {
   final IconData icon;
   final Color color;
   final String title;
+  final String centerTitle;
   final Function onPressed;
 
   MyGridItem({
     @required this.icon,
     this.color,
     this.title,
+    this.centerTitle,
     @required this.onPressed,
   });
 
@@ -31,10 +33,17 @@ class MyGridItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(
+                centerTitle == null ? Icon(
                   icon,
                   size: 48,
                   color: color,
+                ): Text(
+                  centerTitle != null ? centerTitle : '',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                    fontSize: 36,
+                  ),
                 ),
                 Text(
                   title != null ? title : '',

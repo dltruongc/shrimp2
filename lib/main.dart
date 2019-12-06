@@ -1,68 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import './services/Weather.dart';
+import 'package:shrimp_2/blocs/weather_bloc.dart';
+import 'package:shrimp_2/widgets/home.dart';
+import 'package:shrimp_2/widgets/post.dart';
+import 'package:shrimp_2/widgets/settings.dart';
 import './widgets/components/icon_column.dart';
 import './widgets/components/videos.dart';
 import './widgets/main_title.dart';
 import './widgets/components/my_appbar.dart';
+import 'events/weather_event.dart';
 
 void main() {
+  WeatherBloc weatherBloc = WeatherBloc();
   runApp(
-    MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xFF00A3B3),
-        primaryTextTheme: TextTheme(
-          body1: TextStyle(color: Colors.white),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<WeatherBloc>(
+          create: (context) => weatherBloc,
         ),
-        primaryIconTheme: IconThemeData(color: Color(0xFF012A33)),
-        textTheme: TextTheme(
-          body1: TextStyle(color: Colors.blue),
-          body2: TextStyle(),
-        ).apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.orange,
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Color(0xFF00A3B3),
+          primaryTextTheme: TextTheme(
+            body1: TextStyle(color: Colors.black),
+          ),
+          primaryIconTheme: IconThemeData(color: Color(0xFF012A33)),
+          
         ),
-      ),
-      home: ChangeNotifierProvider<WeatherProvider>.value(
-        value: WeatherProvider(),
-        child: MyApp(),
+        home: MyApp(),
       ),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _currentPage = 1;
+
+  List<Widget> _loadPage = [
+    PostPage(),
+    HomePage(),
+    SettingPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar.title(title: 'Trang chủ'),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: VideoWidget(),
-          ),
-          Expanded(
-            flex: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                IconColumn(),
-                IconColumn(),
-                IconColumn(),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 4,
-            child: MainTitleList(),
-          ),
-        ],
-      ),
+      body: _loadPage[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
+        currentIndex: _currentPage,
         unselectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
@@ -78,6 +69,11 @@ class MyApp extends StatelessWidget {
             title: Text('Cài đặt'),
           ),
         ],
+        onTap: (int _index) {
+          setState(() {
+            _currentPage = _index;
+          });
+        },
       ),
     );
   }

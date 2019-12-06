@@ -1,46 +1,48 @@
-import 'package:weather/weather.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:shrimp_2/blocs/weather_bloc.dart';
+import 'package:shrimp_2/events/weather_event.dart';
+import 'package:shrimp_2/widgets/components/my_appbar.dart';
+import '../widgets/weather/weather_list_build.dart';
 import '../widgets/weather/weather_title_build.dart';
-import '../widgets/weather/weather_build.dart';
 
 class WeatherWidget extends StatelessWidget {
-  final Weather weather;
-
-  WeatherWidget({this.weather});
-
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-//      appBar: MyAppBar.title(title: 'Thời tiết'),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('lib/assets/weather_wallpaper.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.refresh),
+        label: Text('Tải lại'),
+        onPressed: () {
+          Provider.of<WeatherBloc>(context)
+              .event
+              .add(WeatherEvent(weatherType.fiveDaysForecast));
+        },
+      ),
+      body: SafeArea(
         child: Container(
-          color: Colors.black38,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: WeatherTitleBuild(weather: weather),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('lib/assets/weather_wallpaper.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Container(
+            color: Colors.black45,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 4,
+                  child: WeatherTitleBuild(),
                 ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  decoration: BoxDecoration(color: Colors.black26),
-                  child: WeatherListBuild(),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                      color: Colors.black26, child: WeatherListBuild()),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
