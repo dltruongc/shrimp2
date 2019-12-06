@@ -14,6 +14,7 @@ class _WeatherTitleBuildState extends State<WeatherTitleBuild> {
     return Consumer<WeatherBloc>(
       builder: (_, bloc, child) {
         Weather weather = bloc.weatherData['data'].first;
+        print(weather);
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[

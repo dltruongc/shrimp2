@@ -4,15 +4,19 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import '../blocs/login_bloc.dart';
 import '../events/login_event.dart';
-import '../models/user_model.dart';
 import '../widgets/register.dart';
 import '../widgets/settings.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   bool fromSetting = false;
 
   LoginPage({this.fromSetting});
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,22 +39,16 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: LoginView(
-          fromSetting: fromSetting,
-        ),
+        child: LoginView(),
       ),
     );
   }
 }
 
 class LoginView extends StatefulWidget {
-  bool fromSetting = false;
-
-  LoginView({this.fromSetting});
-
   @override
   State<StatefulWidget> createState() {
-    return LoginPageState(fromSetting: fromSetting);
+    return LoginPageState();
   }
 }
 
@@ -60,9 +58,6 @@ class LoginPageState extends State<LoginView> {
   bool _showPassword = true;
   bool _showLoading = false;
   LoginBloc _loginBloc;
-  bool fromSetting = false;
-
-  LoginPageState({this.fromSetting});
 
   Widget _showPasswordFnc() {
     return GestureDetector(
@@ -74,19 +69,6 @@ class LoginPageState extends State<LoginView> {
       child:
           _showPassword ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
     );
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _loginBloc.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    _loginBloc = LoginBloc();
-    super.initState();
   }
 
   Widget _loggedIn() {
@@ -117,10 +99,7 @@ class LoginPageState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    // ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
-    // ScreenUtil.instance =
-    //     ScreenUtil(width: 750, height: 1280, allowFontScaling: true);
-    return Provider.of<LoginBloc>(context).user.id != null
+    return Provider.of<LoginBloc>(context).userData != null
         ? _loggedIn()
         : Padding(
             padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 60.0),
@@ -262,20 +241,27 @@ class LoginPageState extends State<LoginView> {
                               _loginBloc
                                   .loginQuest(
                                       _emailInput.text, _passWordInput.text)
-                                  .then((data) {
-                                fromSetting
-                                    ? Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SettingPage()))
-                                    : Navigator.of(context).pop();
-                              }).catchError((err) {
-                                print(err);
-                              }).whenComplete(() {
-                                setState(() {
-                                  _showLoading = false;
-                                });
-                              });
+                                  .then(
+                                (data) {
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => SettingPage(),
+                                    ),
+                                  );
+                                },
+                              ).catchError(
+                                (err) {
+                                  print(err);
+                                },
+                              ).whenComplete(
+                                () {
+                                  setState(
+                                    () {
+                                      _showLoading = false;
+                                    },
+                                  );
+                                },
+                              );
                             }
                           },
                           child: Center(

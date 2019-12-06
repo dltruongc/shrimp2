@@ -36,9 +36,9 @@ class LoginBloc extends BaseBloc with ChangeNotifier {
       return result;
   }
 
-  Stream get loginCtrl => _loginCtrl.stream;
+  Stream get stream => _loginCtrl.stream;
 
-  User get user => _user;
+  User get userData => _user;
 
   bool loginValid(LoginEvent event) {
     if (!AccountValidate.isValidUserName(event.userName)) {
@@ -54,8 +54,6 @@ class LoginBloc extends BaseBloc with ChangeNotifier {
   }
 
   User get loginUser => _user;
-
-  Stream get stream => _loginCtrl.stream;
 
   @override
   void dispose() {

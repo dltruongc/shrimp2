@@ -4,11 +4,17 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+
     {
       "name": "Dart",
       "type": "dart",
       "request": "launch",
       "program": "/Users/dltr/Codes/Project/shrimp_2/dump/main.dart"
+    },{
+      "name": "fewf",
+      "type": "dart",
+      "request": "launch",
+      "program": "/Users/dltr/Codes/Project/shrimp_2/lib/fs.dart"
     },
     {
       "name": "Flutter",

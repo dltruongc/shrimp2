@@ -40,18 +40,12 @@ class _MainTitleListState extends State<MainTitleList> {
   weatherType type;
   List<Weather> weatherData;
   @override
-  void didChangeDependencies() {
-    // WeatherBloc bloc = Provider.of<WeatherBloc>(context, listen: false);
-    // if (bloc.weatherData['data'].isEmpty)
-    //   // bloc.event.add(WeatherEvent(weatherType.fiveDaysForecast));
-    super.didChangeDependencies();
-    //  type = bloc.weatherData['type'];
-    //  weatherData = bloc.weatherData['data'];
-
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WeatherBloc bloc = Provider.of<WeatherBloc>(context, listen: true);
+    if (bloc.weatherData['data'].isEmpty)
+      bloc.event.add(WeatherEvent(weatherType.fiveDaysForecast));
+    type = bloc.weatherData['type'];
+    weatherData = bloc.weatherData['data'];
 
     return GridView(
       physics: new NeverScrollableScrollPhysics(),
@@ -63,24 +57,39 @@ class _MainTitleListState extends State<MainTitleList> {
         childAspectRatio: 1.0,
       ),
       children: <Widget>[
-        MyGridItem(
-          title: gridItems[0]['title'],
-          icon: gridItems[0]['centerIcon'],
-          color: gridItems[0]['color'],
-          centerTitle: type != null
-              ? type != weatherType.currentWeather
+        Stack(
+          alignment: AlignmentDirectional.center,
+          fit: StackFit.expand,
+          children: [
+            MyGridItem(
+              title: gridItems[0]['title'],
+              icon: null,
+              color: gridItems[0]['color'],
+              centerTitle: type != null
                   ? weatherData.first.temperature.celsius.toStringAsFixed(0) +
                       '\u2070C'
-                  : weatherData.first.temperature.celsius.toStringAsFixed(0) +
-                      '\u2070C'
-              : null,
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => WeatherWidget(),
+                  : null,
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => WeatherWidget(),
+                  ),
+                );
+              },
+            ),
+            Positioned(
+              top: 20,
+              child: Container(
+                height: 50,
+                width: 50,
+                child: type != null? SizedBox(): 
+                CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                  strokeWidth: 6,
+                ),
               ),
-            );
-          },
+            ),
+          ],
         ),
         MyGridItem(
           title: gridItems[1]['title'],

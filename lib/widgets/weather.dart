@@ -14,9 +14,9 @@ class WeatherWidget extends StatelessWidget {
         icon: Icon(Icons.refresh),
         label: Text('Tải lại'),
         onPressed: () {
-          // Provider.of<WeatherBloc>(context)
-          //     .event
-          //     .add(WeatherEvent(weatherType.fiveDaysForecast));
+          Provider.of<WeatherBloc>(context)
+              .event
+              .add(WeatherEvent(weatherType.fiveDaysForecast));
         },
       ),
       body: SafeArea(

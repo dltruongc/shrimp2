@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:shrimp_2/blocs/weather_bloc.dart';
 import '../blocs/login_bloc.dart';
 import 'components/alert_dialog.dart';
 import 'login.dart';
@@ -89,7 +90,7 @@ class _PostPageState extends State<PostPage> {
 
     Map<String, dynamic> item = {
       'name': 'Tên nông dân',
-      'place': 'CanTho',
+      'place': Provider.of<WeatherBloc>(context).weatherData['data'].first.areaName,
       'time': DateTime.now().toString().substring(5, 11),
       'job': 'Nông dân',
       'title': 'Tiêu đề bài đăng',
