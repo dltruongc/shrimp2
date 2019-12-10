@@ -7,6 +7,7 @@ import 'package:weather/weather.dart';
 
 import '../widgets/weather.dart';
 import './components/grid_item.dart';
+import '../widgets/price.dart';
 
 class MainTitleList extends StatefulWidget {
   @override
@@ -101,7 +102,12 @@ class _MainTitleListState extends State<MainTitleList> {
           title: gridItems[2]['title'],
           icon: gridItems[2]['centerIcon'],
           color: gridItems[2]['color'],
-          onPressed: () {},
+          onPressed: () {
+            print('click');
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => PricePage() ),
+            );
+          },
         ),
         MyGridItem(
           title: gridItems[3]['title'],

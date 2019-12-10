@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:shrimp_2/blocs/weather_bloc.dart';
+import 'package:shrimp2/blocs/weather_bloc.dart';
 import '../blocs/login_bloc.dart';
 import 'components/alert_dialog.dart';
 import 'login.dart';
@@ -82,10 +82,12 @@ class _PostPageState extends State<PostPage> {
 
   Widget _getPost(int idx) {
     List<String> _images = [
-      'https://i.ytimg.com/vi/jpsGLsaZKS0/maxresdefault.jpg',
-      'https://www.communitycatspodcast.com/wp-content/uploads/2019/09/CatInNews.jpg',
-      'https://i.ytimg.com/vi/jpsGLsaZKS0/maxresdefault.jpg',
-      'https://www.communitycatspodcast.com/wp-content/uploads/2019/09/CatInNews.jpg',
+      'lib/assets/tom1.jpg',
+      'lib/assets/tom2.jpg'
+      // 'https://i.ytimg.com/vi/jpsGLsaZKS0/maxresdefault.jpg',
+      // 'https://www.communitycatspodcast.com/wp-content/uploads/2019/09/CatInNews.jpg',
+      // 'https://i.ytimg.com/vi/jpsGLsaZKS0/maxresdefault.jpg',
+      // 'https://www.communitycatspodcast.com/wp-content/uploads/2019/09/CatInNews.jpg',
     ];
 
     Map<String, dynamic> item = {
@@ -96,18 +98,7 @@ class _PostPageState extends State<PostPage> {
       'title': 'Tiêu đề bài đăng',
       'views': 3210,
       'favorites': 99,
-      'content': 'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị'
-          'Nội dung của bài đăng được hiển thị',
+      'content': 'Đang cần sai 75-115con ,50-35con giá vip tỉnh kiên Giang.Ai có cần liên hệ',
       'images': _images,
       'avatar':
           'https://i.pinimg.com/236x/c2/fa/02/c2fa025d9937e89c010c5917ce7e555b.jpg'
@@ -241,8 +232,9 @@ class _PostPageState extends State<PostPage> {
     int images = item['images'].length;
     final ListView postImages = ListView.builder(
       scrollDirection: Axis.horizontal,
+      itemCount: 2,
       itemBuilder: (context, idx) {
-        if (idx < images) {
+        //if (idx < images) {
           return Padding(
             padding: idx < images - 1
                 ? EdgeInsets.fromLTRB(0, 0, 10, 0)
@@ -257,15 +249,16 @@ class _PostPageState extends State<PostPage> {
                       color: Colors.black12),
                 ],
               ),
-              child: Image.network(
+              child: Image.asset( //Image.Network
                 item['images'][idx],
                 width: 200,
                 fit: BoxFit.cover,
               ),
+
             ),
           );
-        } else
-          return null;
+        // } else
+        //   return null;
       },
     );
 
@@ -304,6 +297,7 @@ class _PostPageState extends State<PostPage> {
             color: Colors.white,
             child: images == 1 ? postImage : postImages,
           ),
+          
 
           // post content
           Container(

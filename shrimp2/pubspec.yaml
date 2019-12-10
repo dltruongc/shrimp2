@@ -57,6 +57,8 @@ flutter:
     - lib/assets/icon80.png
     - lib/assets/icon30n.png
     - lib/assets/icon50n.png
+    - lib/assets/tom1.jpg
+    - lib/assets/tom2.jpg
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
