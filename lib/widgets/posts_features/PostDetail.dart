@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class PostDetail extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> item = {
@@ -13,12 +12,61 @@ class PostDetail extends StatelessWidget {
       'title': 'Tiêu đề bài đăng',
       'views': 3210,
       'favorites': 99,
-      'content':
-          'Nội dung của bài đăng được hiển thị',
+      'content': 'Nội dung của bài đăng được hiển thị',
       'images': '',
       'avatar':
           'https://i.pinimg.com/236x/c2/fa/02/c2fa025d9937e89c010c5917ce7e555b.jpg'
     };
+
+    _command(String name, String cmt) {
+      return Container(
+        height: 70,
+        margin: EdgeInsets.all(10),
+        child: Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  child: Align(
+                    child: Text(name),
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: Colors.blue[300],
+                  ),
+                ),
+              ),
+              Container(
+                height: 70,
+                width: 250,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Wrap(
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.all(10),
+                            child: SizedBox(
+                              height: 70,
+                              width: 200,
+                              child: Text(cmt),
+                            ))
+                      ],
+                    )
+                  ],
+                ),
+                decoration: BoxDecoration(
+                    color: Color(0xffC4D7D7),
+                    borderRadius: BorderRadius.circular(25)),
+              )
+            ],
+          ),
+        ),
+      );
+    }
 
     _commentTile() {
       return Container(
@@ -97,10 +145,11 @@ class PostDetail extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           Text(item['content'] * 2),
-                          Image.network(
-                            'https://s.hdnux.com/photos/01/01/06/57/17066975/5/420x0.jpg',
-                            fit: BoxFit.contain,
-                          ),
+                          // Image.network(
+                          //   'https://s.hdnux.com/photos/01/01/06/57/17066975/5/420x0.jpg',
+                          //   fit: BoxFit.contain,
+                          // ),
+                          Image.asset('lib/assets/tom1.jpg'),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
@@ -189,31 +238,25 @@ class PostDetail extends StatelessWidget {
                           ),
                           Column(
                             children: <Widget>[
-                              _commentTile(),
+                              _command('ND1',
+                                  'Khi nào rảnh ad cập nhật tình hình giá ca lên xuống cho mn cung tham khảo'),
                               SizedBox(
                                 height: 10,
                               ),
-                              _commentTile(),
+                              _command('ND2', '115con kí nhiu vay'),
                               SizedBox(
                                 height: 10,
                               ),
-                              _commentTile(),
+                              _command('ND3',
+                                  'Em có ao size 40 con , ao đất giá bao nhiu z , ao e khoảng 1.500kg'),
                               SizedBox(
                                 height: 10,
                               ),
-                              _commentTile(),
+                              _command('ND4',
+                                  'e có thẻ ao bạt 55 con ở thứ 11 Kiên Giang, xin giá'),
                               SizedBox(
                                 height: 10,
                               ),
-                              _commentTile(),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              _commentTile(),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              _commentTile(),
                             ],
                           ),
                         ],
