@@ -12,10 +12,10 @@ class _IconColumnState extends State<IconColumn> {
     return Column(
       children: <Widget>[
         Container(
-          width: 32,
-          height: 32,
+          width: 40,
+          height: 40,
           child: Image.asset(
-            'lib/assets/shrimp_ico.png',
+            'lib/assets/shrimp_ico4.png',
             color: Color(0xEEEC3B6B),
             fit: BoxFit.cover,
           ),

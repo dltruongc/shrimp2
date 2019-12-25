@@ -25,7 +25,7 @@ class LoginBloc extends BaseBloc with ChangeNotifier {
   Future loginQuest(String email, String password) async {
     // TODO
 
-    Db db = await DatabaseProvider().openDb;
+    Db db = await DatabaseProvider().openDb();
     var coll = db.collection('accounts');
     var result = await coll
         .findOne({'accountUserName': email, 'accountPassword': password});
